@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ContentResolver mContentResolver;
     private ListView mPlaylist;
     private MediaCursorAdapter  mCursorAdapter;
-    //private Cursor mCursor;
+    private Cursor mCursor;
 
     private final String SELECTION = MediaStore.Audio.Media.IS_MUSIC + " = ? " + " AND " +
             MediaStore.Audio.Media.MIME_TYPE + " LIKE ? ";
@@ -38,7 +38,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        mPlaylist = findViewById(R.id.lv_playlist);
         mContentResolver = getContentResolver();
+
+//        mCursorAdapter = new MediaCursorAdapter(MainActivity.this);
+//        mPlaylist.setAdapter(mCursorAdapter);
         mCursorAdapter = new MediaCursorAdapter(MainActivity.this);
         mPlaylist.setAdapter(mCursorAdapter);
 
@@ -52,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         }else {
             initPlaylist();
         }
+
+
+
     }
 
     @Override
@@ -74,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 SELECTION_ARGS,MediaStore.Audio.Media.DEFAULT_SORT_ORDER
         );
 
-        mCursorAdapter.swapCursor(Cursor);
+        mCursorAdapter.swapCursor(mCursor);
         mCursorAdapter.notifyDataSetChanged();
     }
 }

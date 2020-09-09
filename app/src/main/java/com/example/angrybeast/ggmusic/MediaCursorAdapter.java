@@ -39,6 +39,15 @@ public class MediaCursorAdapter extends CursorAdapter {
         return  null;
     }
 
+
+
+    public class ViewHolder{
+        TextView tvTitle;
+        TextView tvArtist;
+        TextView tvOrder;
+        View divider;
+    }
+
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder vh = (ViewHolder)view.getTag();
@@ -56,12 +65,5 @@ public class MediaCursorAdapter extends CursorAdapter {
             vh.tvArtist.setText(artist);
             vh.tvOrder.setText(Integer.toString(position + 1));
         }
-    }
-
-    public class ViewHolder{
-        TextView tvTitle;
-        TextView tvArtist;
-        TextView tvOrder;
-        View divider;
     }
 }
